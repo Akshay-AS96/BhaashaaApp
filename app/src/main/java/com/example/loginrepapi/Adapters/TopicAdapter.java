@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +18,10 @@ import java.util.ArrayList;
 
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
 
-    private ArrayList<TopicData> data;
+private ImageView topic_image;
+private ImageView topic_arrow;
+private ArrayList<TopicData> data;
+
     private Context context;
     public TopicAdapter(ArrayList<TopicData> data, Context context) {
         this.data = data;
@@ -37,7 +42,14 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     @Override
     public void onBindViewHolder(@NonNull TopicViewHolder holder, int position) {
         holder.content.setText(data.get(position).getContent());
-        holder.description.setText(data.get(position).getDescription());
+        holder.llmain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
        // holder.phonetics.setText(data.get(position).getPhonetics());
     }
 
@@ -47,14 +59,17 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     }
 
     public class TopicViewHolder extends RecyclerView.ViewHolder {
-        TextView content, description, phonetics;
+        LinearLayout llmain;
+        ImageView topic_image;
+        TextView content;
+        ImageView topic_arrow;
 
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
             content=itemView.findViewById(R.id.textView1);
-            description=itemView.findViewById(R.id.textView2);
-            phonetics=itemView.findViewById(R.id.textView3);
-
+            topic_image=itemView.findViewById(R.id.topic_image);
+            topic_arrow=itemView.findViewById(R.id.topic_arrow);
+            llmain = itemView.findViewById(R.id.llmain);
 
         }
     }

@@ -6,28 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".Activities.DashBoardActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/logoutbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/CustomRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="528dp"
-        app:layout_constraintBottom_toTopOf="@+id/logoutbtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:listitem="@layout/recycler_view_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+

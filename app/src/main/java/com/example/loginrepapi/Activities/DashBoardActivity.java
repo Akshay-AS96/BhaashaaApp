@@ -1,6 +1,9 @@
 package com.example.loginrepapi.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.loginrepapi.Activities.Fragments.Learn;
 import com.example.loginrepapi.Requests.AppRegDataModel;
 import com.example.loginrepapi.Responses.AppRegResponse;
 import com.example.loginrepapi.BuildConfig;
@@ -37,26 +41,33 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashBoardActivity extends AppCompatActivity {
-    private TopicAdapter adapter;
-    Button logoutbtn;
+   /* private TopicAdapter adapter;
     private ArrayList<TopicData> data;
     private RecyclerView recyclerView;
     ProgressDialog progressDoalog;
-    SharedPreferencesManager sharedPreferencesManager;
+    SharedPreferencesManager sharedPreferencesManager;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
-        sharedPreferencesManager = new SharedPreferencesManager(this);
+        setFragment(new Learn());
+       /* sharedPreferencesManager = new SharedPreferencesManager(this);
         recyclerView = findViewById(R.id.CustomRecyclerView);
         progressDoalog = new ProgressDialog(DashBoardActivity.this);
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
-        init();
+        TOPIC();*/
 
     }
-    private  void  allUser(){
+    protected void setFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, fragment, "fragment");
+        fragmentTransaction.commit();
+    }
+   /* private  void  allUser(){
         String access_token = sharedPreferencesManager.getAccessToken();
         UserDataService service= SignUpClientInstance.getRetrofit().create(UserDataService.class);
         Call<UserResponse>call=service.getAllposts("Bearer"+access_token);
@@ -96,9 +107,9 @@ public class DashBoardActivity extends AppCompatActivity {
                    // int Topicid = response1.getData().get(0).getId();
                     data=response1.getData();
                     generateDataList(data);
-                    progressDoalog.dismiss();
 
-                    Toast.makeText(getApplicationContext(), "Topic id--" , Toast.LENGTH_SHORT).show();
+
+
                 } else {
                     Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_SHORT).show();
                 }
@@ -122,7 +133,7 @@ public class DashBoardActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void init() {
+   *//* private void init() {
         logoutbtn = findViewById(R.id.logoutbtn);
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +142,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*//*
 
     private void Logout() {
         String access_token = sharedPreferencesManager.getAccessToken();
@@ -165,31 +176,6 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
     }
+*/
 
-    public void access() {
-        String model_info = Build.MANUFACTURER;
-        String os_info = BuildConfig.VERSION_NAME;
-
-        String device_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        AppRegDataModel appRegDataModel = new AppRegDataModel(device_id, model_info, os_info, 1,
-                "hsdbchjgjhgjsghj", "1.0.0", 1,
-                1, "com.baashaa.com");
-        final AppDataService service = SignUpClientInstance.getRetrofit().create(AppDataService.class);
-        Call<AppRegResponse> call = service.getAllposts(appRegDataModel);
-        call.enqueue(new Callback<AppRegResponse>() {
-            @Override
-            public void onResponse(Call<AppRegResponse> call, Response<AppRegResponse> response) {
-                AppRegResponse appRegistrationResponse = response.body();
-                String appId = appRegistrationResponse.getData().get(0).getApp_id();
-                Toast.makeText(getApplicationContext(), "APP id--" + appId, Toast.LENGTH_SHORT).show();
-              //  Logout(appId);
-            }
-
-            @Override
-            public void onFailure(Call<AppRegResponse> call, Throwable t) {
-
-            }
-        });
-    }
 }
