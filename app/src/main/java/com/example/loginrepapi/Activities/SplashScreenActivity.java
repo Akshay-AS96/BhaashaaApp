@@ -22,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 String access_token=sharedPreferencesManager.getAccessToken();
                 if(access_token!=null){
-                    Intent intent=new Intent(SplashScreenActivity.this, DashBoardActivity.class);
+                    Intent intent=new Intent(SplashScreenActivity.this, DashBoardVpager.class);
                     startActivity(intent);
                 }else {
                     Intent intent=new Intent(SplashScreenActivity.this, LoginActivity.class);

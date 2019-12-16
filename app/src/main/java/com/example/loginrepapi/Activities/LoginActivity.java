@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful()&&loginResponse!=null){
                     String access_token=loginResponse.getAccess_token();
                     Toast.makeText(getApplicationContext(),access_token,Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(LoginActivity.this, DashBoardActivity.class);
+                    Intent intent=new Intent(LoginActivity.this, DashBoardVpager.class);
                     startActivity(intent);
                     sharedPreferencesManager.saveAccessToken(access_token);
                 }else {
