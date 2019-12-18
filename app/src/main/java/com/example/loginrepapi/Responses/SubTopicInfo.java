@@ -10,7 +10,7 @@ public class SubTopicInfo {
     private String api_version;
     @SerializedName("start-time")
     private String start_time;
-    @SerializedName("start-time")
+    @SerializedName("end_time")
     private String end_time;
 
     public SubTopicInfo(String status, String message, String items_per_page, String current_page, String api_version, String start_time, String end_time) {

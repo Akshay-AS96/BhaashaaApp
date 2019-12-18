@@ -2,6 +2,7 @@ package com.example.loginrepapi.Activities.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -17,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.loginrepapi.Activities.DashBoardActivity;
+import com.example.loginrepapi.Activities.SubTopicActivity;
 import com.example.loginrepapi.Adapters.TopicAdapter;
+import com.example.loginrepapi.Interfaces.ClickInterface;
 import com.example.loginrepapi.Interfaces.TopicDataService;
 import com.example.loginrepapi.R;
 import com.example.loginrepapi.Responses.TopicData;
@@ -32,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Learn extends Fragment {
+public class Learn extends Fragment implements ClickInterface {
 
     private TopicAdapter adapter;
     private ArrayList<TopicData> data;
@@ -107,7 +110,7 @@ public class Learn extends Fragment {
     }
 
     private void generateDataList( ArrayList<TopicData> dataArrayList) {
-        adapter = new TopicAdapter(dataArrayList,getActivity());
+        adapter = new TopicAdapter(dataArrayList,getActivity(), (ClickInterface) this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.VERTICAL);
@@ -136,6 +139,13 @@ public class Learn extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void click(String position) {
+        Intent intent=new Intent(getActivity(), SubTopicActivity.class);
+        intent.putExtra("position",position);
+        startActivity(intent);
     }
 
 

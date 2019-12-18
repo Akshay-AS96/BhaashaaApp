@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.DashBoardVpager"></activity>
+        <activity android:name=".Activities.UnitVPagerActivity"></activity>
+        <activity android:name=".Activities.SubTopicActivity" />
+        <activity android:name=".Activities.DashBoardVpager" />
         <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +24,7 @@
         <activity android:name=".Activities.DashBoardActivity" />
         <activity android:name=".Activities.ActivitySub" />
         <activity android:name=".Activities.SignUpActivity" />
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.LoginActivity" />
     </application>
 
 </manifest>

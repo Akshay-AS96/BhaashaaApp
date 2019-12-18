@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.loginrepapi.Interfaces.ClickInterface;
 import com.example.loginrepapi.R;
 import com.example.loginrepapi.Responses.TopicData;
 import com.squareup.picasso.Picasso;
@@ -18,15 +19,17 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHolder> {
-
-private ImageView topic_image;
-private ImageView topic_arrow;
-private ArrayList<TopicData> data;
-public String url="https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
+    ClickInterface clickInterface;
+    private ImageView topic_image;
+    private ImageView topic_arrow;
+    private ArrayList<TopicData> data;
+    public String url = "https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
     private Context context;
-    public TopicAdapter(ArrayList<TopicData> data, Context context) {
+
+    public TopicAdapter(ArrayList<TopicData> data, Context context,ClickInterface clickInterface) {
         this.data = data;
         this.context = context;
+        this.clickInterface=clickInterface;
     }
 
     @NonNull
@@ -41,22 +44,22 @@ public String url="https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopicViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TopicViewHolder holder, final int position) {
         holder.content.setText(data.get(position).getContent());
-        Picasso.with(context).load(url+data.get(position).getImg()+".png").into(holder.topic_image);
+        Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.topic_image);
         holder.llmain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                clickInterface.click(data.get(position).getBase_content_id());
             }
         });
 
-
-       // holder.phonetics.setText(data.get(position).getPhonetics());
+        // holder.phonetics.setText(data.get(position).getPhonetics());
     }
 
     @Override
-    public int getItemCount() {
+    public
+int getItemCount() {
         return data.size();
     }
 
@@ -68,9 +71,9 @@ public String url="https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/
 
         public TopicViewHolder(@NonNull View itemView) {
             super(itemView);
-            content=itemView.findViewById(R.id.textView1);
-            topic_image=itemView.findViewById(R.id.topic_imagee);
-            topic_arrow=itemView.findViewById(R.id.topic_arrow);
+            content = itemView.findViewById(R.id.textView1);
+            topic_image = itemView.findViewById(R.id.topic_imagee);
+            topic_arrow = itemView.findViewById(R.id.topic_arrow);
             llmain = itemView.findViewById(R.id.llmain);
 
         }

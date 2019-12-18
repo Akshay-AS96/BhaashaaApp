@@ -1,6 +1,8 @@
 package com.example.loginrepapi.Responses;
 
-public class SubTopicData {
+import java.util.ArrayList;
+
+public class SubTopicData{
     private String content_app_id;
     private String order;
     private String type;

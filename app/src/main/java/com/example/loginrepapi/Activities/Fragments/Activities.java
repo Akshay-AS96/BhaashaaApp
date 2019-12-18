@@ -19,8 +19,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.loginrepapi.Activities.ActivitySub;
+import com.example.loginrepapi.Activities.SubTopicActivity;
 import com.example.loginrepapi.Adapters.ActivityTopicAdapter;
 import com.example.loginrepapi.Adapters.TopicAdapter;
+import com.example.loginrepapi.Interfaces.ClickInterface;
 import com.example.loginrepapi.Interfaces.TopicDataService;
 import com.example.loginrepapi.R;
 import com.example.loginrepapi.Responses.TopicData;
@@ -92,6 +94,7 @@ public class Activities extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
 
     public interface OnFragmentInteractionListener {
