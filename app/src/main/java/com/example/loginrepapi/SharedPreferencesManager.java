@@ -27,4 +27,16 @@ public class SharedPreferencesManager {
     public void ClearToken(){
         pref.edit().clear().commit();
     }
+
+    public void saveappId ( String appid){
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("app id", appid); // Storing string
+        editor.commit();
+
+    }
+    public String getappid(){
+
+        return pref.getString("app id",null);
+    }
+
 }
