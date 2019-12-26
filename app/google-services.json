@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "569047630974",
+    "firebase_url": "https://loginrepapi-64be4.firebaseio.com",
+    "project_id": "loginrepapi-64be4",
+    "storage_bucket": "loginrepapi-64be4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:569047630974:android:87d49366fb0b3bd669442f",
+        "android_client_info": {
+          "package_name": "com.example.loginrepapi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "569047630974-8s7tobs87qo073uk7l12223bkijjppts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginrepapi",
+            "certificate_hash": "e2ed21e875598934652ce769fb007903d02e14a5"
+          }
+        },
+        {
+          "client_id": "569047630974-e5g3epbuu23am8m8c1nk3obs593h7v99.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcsJfyMRW0ee3Cy9OBwCXSJpAqIsaQAv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "569047630974-e5g3epbuu23am8m8c1nk3obs593h7v99.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
