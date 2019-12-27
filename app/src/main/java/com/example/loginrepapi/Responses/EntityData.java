@@ -97,4 +97,60 @@ public class EntityData {
     public EntityDestination getDestination() {
         return destination;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPhonetics(String phonetics) {
+        this.phonetics = phonetics;
+    }
+
+    public void setEntityrefid(String entityrefid) {
+        this.entityrefid = entityrefid;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setStaticwriting(int staticwriting) {
+        this.staticwriting = staticwriting;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public void setContenttype(int contenttype) {
+        this.contenttype = contenttype;
+    }
+
+    public void setSourcelangcode(String sourcelangcode) {
+        this.sourcelangcode = sourcelangcode;
+    }
+
+    public void setDestination_langcode(String destination_langcode) {
+        this.destination_langcode = destination_langcode;
+    }
+
+    public void setSource(EntitySource source) {
+        this.source = source;
+    }
+
+    public void setDestination(EntityDestination destination) {
+        this.destination = destination;
+    }
 }

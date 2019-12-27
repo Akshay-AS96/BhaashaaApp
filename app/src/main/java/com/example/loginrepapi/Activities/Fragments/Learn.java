@@ -79,6 +79,7 @@ public class Learn extends Fragment implements ClickInterface {
         TOPIC();
     }
 
+
     private void TOPIC() {
         String access_token = "Bearer "+sharedPreferencesManager.getAccessToken();
         TopicDataService service = SignUpClientInstance.getRetrofit().create(TopicDataService.class);

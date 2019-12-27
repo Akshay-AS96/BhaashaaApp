@@ -63,6 +63,7 @@ public class UnitFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         dlTextView = view.findViewById(R.id.dlTextView);
         slTextView = view.findViewById(R.id.slTextView);
         unitimg = view.findViewById(R.id.unitimg);
@@ -77,14 +78,16 @@ public class UnitFragment extends Fragment {
             final String destinationLangCode=data.getDestination_langcode();
             dlTextView.setText(data.getUnitDestination().getContent());
             Picasso.with(context).load(url + data.getImg() + ".png").into(unitimg);
-            slTextView.setText(data.getContent());
+            slTextView.setText(data.getUnitSource().getContent());
             final String voice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/"+sourceLangCode+"_voice/"+ id.trim() + ".mp3";
             final String dvoice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/"+destinationLangCode+"_voice/"+ id.trim() + ".mp3";
    //         urlvoice = urlvoice + sourceLangCode + "_voice/" + id.trim() + ".mp3";
+
+
             unitimagebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    sampleMediaPlayer.killMediaPlayer();
+                  sampleMediaPlayer.killMediaPlayer();
                     sampleMediaPlayer.playAudio(voice,dvoice);
 
                 }
@@ -99,6 +102,8 @@ public class UnitFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_unit, container, false);
+
+
     }
 }
 

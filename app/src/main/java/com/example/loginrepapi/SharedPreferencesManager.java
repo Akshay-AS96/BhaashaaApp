@@ -24,7 +24,8 @@ public class SharedPreferencesManager {
 
         return pref.getString("access_token",null);
     }
-    public void ClearToken(){
+    public void ClearToken()
+    {
         pref.edit().clear().commit();
     }
 

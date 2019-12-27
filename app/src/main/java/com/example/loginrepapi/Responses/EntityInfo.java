@@ -18,6 +18,38 @@ public class EntityInfo {
     @SerializedName("end_time")
     private String endtime;
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setItemsperpage(int itemsperpage) {
+        this.itemsperpage = itemsperpage;
+    }
+
+    public void setPagecount(int pagecount) {
+        this.pagecount = pagecount;
+    }
+
+    public void setCurrentpage(int currentpage) {
+        this.currentpage = currentpage;
+    }
+
+    public void setApiversion(String apiversion) {
+        this.apiversion = apiversion;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
     public EntityInfo(String status, String message, int itemsperpage, int pagecount, int currentpage, String apiversion, String starttime, String endtime) {
         this.status = status;
         this.message = message;

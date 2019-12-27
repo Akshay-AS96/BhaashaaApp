@@ -19,6 +19,7 @@ public class UnitData  implements Parcelable {
     String phonetics;
     String topic_id;
 
+
     protected UnitData(Parcel in) {
         content_app_id = in.readString();
         order = in.readString();
@@ -216,7 +217,7 @@ public class UnitData  implements Parcelable {
     }
 
     @Override
-    public int describeContents() {
+    public int describeContents()  {
         return 0;
     }
 

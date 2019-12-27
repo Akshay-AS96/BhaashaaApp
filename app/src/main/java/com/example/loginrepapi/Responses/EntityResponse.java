@@ -25,4 +25,5 @@ public class EntityResponse {
     public void setInfo(EntityInfo info) {
         this.info = info;
     }
+
 }

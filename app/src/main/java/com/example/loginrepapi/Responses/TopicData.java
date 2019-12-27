@@ -20,11 +20,14 @@ public class TopicData {
     String base_content;
     String derived_img;
     String derived_video;
+    private int completed;
+
+
 
     public TopicData(String id, String mode, String version, String base_content_id, String weight, String content,
                      String description, String phonetics, String status, String creator, String verifier,
                      String created, String last_update, String img, String voice, String url,
-                     String base_content, String derived_img, String derived_video) {
+                     String base_content, String derived_img, String derived_video,int completed) {
         this.id = id;
         this.mode = mode;
         this.version = version;
@@ -44,6 +47,11 @@ public class TopicData {
         this.base_content = base_content;
         this.derived_img = derived_img;
         this.derived_video = derived_video;
+        this.completed = completed;
+
+    }
+    public int getCompleted() {
+        return completed;
     }
 
     public String getId() {

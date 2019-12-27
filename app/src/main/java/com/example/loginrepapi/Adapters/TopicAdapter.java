@@ -1,6 +1,11 @@
 package com.example.loginrepapi.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +30,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
     private ArrayList<TopicData> data;
     public String url = "https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
     private Context context;
-
+    public boolean completed=false;
     public TopicAdapter(ArrayList<TopicData> data, Context context,ClickInterface clickInterface) {
         this.data = data;
         this.context = context;
@@ -45,16 +50,28 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
 
     @Override
     public void onBindViewHolder(@NonNull TopicViewHolder holder, final int position) {
-        holder.content.setText(data.get(position).getContent());
-        Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.topic_image);
-        holder.llmain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickInterface.click(data.get(position).getBase_content_id());
-            }
-        });
+       /* int status1 = (data.get(position).getCompleted());
+        int status2=holder.getAdapterPosition();*/
+       /* if (status1==0&&status2==0)*/ {
+            holder.content.setText(data.get(position).getContent());
+            Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.topic_image);
 
-        // holder.phonetics.setText(data.get(position).getPhonetics());
+            holder.llmain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    clickInterface.click(data.get(position).getBase_content_id());
+                }
+            });
+        }
+        /*else {
+            holder.llmain.setClickable(false);
+      holder.content.setText(data.get(position).getContent());
+            Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.topic_image);
+            holder.llmain.setEnabled(false);
+
+
+
+        }*/
     }
 
     @Override
@@ -78,4 +95,7 @@ int getItemCount() {
 
         }
     }
+
+
+
 }

@@ -17,6 +17,51 @@ public class EntityDestination {
     private String remarkvoice;
     @SerializedName("static_writing")
     private String staticwriting;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPhonetics(String phonetics) {
+        this.phonetics = phonetics;
+    }
+
+    public void setBasecontentid(String basecontentid) {
+        this.basecontentid = basecontentid;
+    }
+
+    public void setEntityrefid(String entityrefid) {
+        this.entityrefid = entityrefid;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setVoice(String voice) {
+        this.voice = voice;
+    }
+
+    public void setRemarkvoice(String remarkvoice) {
+        this.remarkvoice = remarkvoice;
+    }
+
+    public void setStaticwriting(String staticwriting) {
+        this.staticwriting = staticwriting;
+    }
+
+    public void setDerivedimg(String derivedimg) {
+        this.derivedimg = derivedimg;
+    }
+
     @SerializedName("derived_img")
     private String derivedimg;
 
