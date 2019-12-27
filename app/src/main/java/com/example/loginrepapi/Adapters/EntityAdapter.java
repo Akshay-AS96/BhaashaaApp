@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,12 +62,16 @@ public class EntityAdapter extends RecyclerView.Adapter<EntityAdapter.EntityView
         ImageView entity_img;
         TextView entity_content;
         LinearLayout ll2;
+        ImageButton voice_entity;
 
         public EntityViewHolder(@NonNull View itemView) {
             super(itemView);
            entity_content =itemView.findViewById(R.id.entity_content);
             entity_img=itemView.findViewById(R.id.entity_img);
             ll2 = itemView.findViewById(R.id.llmain2);
+            voice_entity = itemView.findViewById(R.id.imgbtn_voice);
+
+
         }
     }
 }
