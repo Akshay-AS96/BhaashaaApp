@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,14 +32,16 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class UnitAdapter extends FragmentStatePagerAdapter {
+public class UnitAdapter extends FragmentStatePagerAdapter implements ClickInterface {
 
     private ArrayList<UnitData> data;
+    ClickInterface clickInterface;
 
 
-    public UnitAdapter(@NonNull FragmentManager fm, ArrayList<UnitData> data) {
+    public UnitAdapter(@NonNull FragmentManager fm, ArrayList<UnitData> data, ClickInterface clickInterface) {
         super(fm);
         this.data = data;
+        this.clickInterface=clickInterface;
 
     }
 
@@ -50,11 +53,15 @@ public class UnitAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        UnitFragment unitFragment = new UnitFragment();
+        UnitFragment unitFragment = new UnitFragment(clickInterface);
         Bundle bundle = new Bundle();
         bundle.putParcelable("Unit", data.get(position));
         unitFragment.setArguments(bundle);
         return unitFragment;
     }
 
+    @Override
+    public void click(String position) {
+
+    }
 }

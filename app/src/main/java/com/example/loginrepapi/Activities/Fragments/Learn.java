@@ -62,7 +62,7 @@ public class Learn extends Fragment implements ClickInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_learn, container, false);
+        View view = inflater.inflate(R.layout.fragment_learn, container, false);
         return view;
 
 
@@ -71,19 +71,16 @@ public class Learn extends Fragment implements ClickInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sharedPreferencesManager=new SharedPreferencesManager(getActivity());
+        sharedPreferencesManager = new SharedPreferencesManager(getActivity());
         recyclerView = view.findViewById(R.id.CustomRecyclerView);
-        /*progressDoalog = new ProgressDialog(getActivity());
-        progressDoalog.setMessage("Loading....");
-        progressDoalog.show();*/
         TOPIC();
     }
 
 
     private void TOPIC() {
-        String access_token = "Bearer "+sharedPreferencesManager.getAccessToken();
+        String access_token = "Bearer " + sharedPreferencesManager.getAccessToken();
         TopicDataService service = SignUpClientInstance.getRetrofit().create(TopicDataService.class);
-        Call<TopicResponse> call = service.getAllposts(access_token,"en","ml","17","2");
+        Call<TopicResponse> call = service.getAllposts(access_token, "en", "ml", "17", "2");
         call.enqueue(new Callback<TopicResponse>() {
             @Override
             public void onResponse(Call<TopicResponse> call, Response<TopicResponse> response) {
@@ -91,9 +88,8 @@ public class Learn extends Fragment implements ClickInterface {
                 TopicResponse response1 = response.body();
                 if (response.isSuccessful() && response1 != null && response1.getData() != null) {
                     // int Topicid = response1.getData().get(0).getId();
-                    data=response1.getData();
+                    data = response1.getData();
                     generateDataList(data);
-
 
 
                 } else {
@@ -110,8 +106,8 @@ public class Learn extends Fragment implements ClickInterface {
 
     }
 
-    private void generateDataList( ArrayList<TopicData> dataArrayList) {
-        adapter = new TopicAdapter(dataArrayList,getActivity(), (ClickInterface) this);
+    private void generateDataList(ArrayList<TopicData> dataArrayList) {
+        adapter = new TopicAdapter(dataArrayList, getActivity(),  this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.VERTICAL);
@@ -144,8 +140,8 @@ public class Learn extends Fragment implements ClickInterface {
 
     @Override
     public void click(String position) {
-        Intent intent=new Intent(getActivity(), SubTopicActivity.class);
-        intent.putExtra("position",position);
+        Intent intent = new Intent(getActivity(), SubTopicActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 

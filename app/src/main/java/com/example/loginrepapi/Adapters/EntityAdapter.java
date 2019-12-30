@@ -1,6 +1,7 @@
 package com.example.loginrepapi.Adapters;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.loginrepapi.Interfaces.ClickInterface;
 import com.example.loginrepapi.R;
 import com.example.loginrepapi.Responses.EntityData;
+import com.example.loginrepapi.SampleMediaPlayer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class EntityAdapter extends RecyclerView.Adapter<EntityAdapter.EntityViewHolder> {
-    public String url="https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
     private ArrayList<EntityData> data;
+    public String url = "https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
+    SampleMediaPlayer sampleMediaPlayer;
     ClickInterface clickInterface;
     private Context context;
 
-    public EntityAdapter(String url, ArrayList<EntityData> data, ClickInterface clickInterface, Context context) {
-        this.url = url;
+    public EntityAdapter(ArrayList<EntityData> data, ClickInterface clickInterface, Context context) {
         this.data = data;
         this.clickInterface = clickInterface;
         this.context = context;
@@ -43,14 +45,23 @@ public class EntityAdapter extends RecyclerView.Adapter<EntityAdapter.EntityView
 
     @Override
     public void onBindViewHolder(@NonNull EntityViewHolder holder, final int position) {
-   holder.entity_content.setText(data.get(position).getContent());
-        Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.entity_img);
-    holder.ll2.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+        sampleMediaPlayer=new SampleMediaPlayer();
+        final String id = data.get(position).getSource().getVoice();
+        final String did=data.get(position).getDestination().getVoice();
+        final String sourceLangCode = data.get(position).getSourcelangcode();
+        final String destinationLangCode = data.get(position).getDestination_langcode();
+        final String voice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/" + sourceLangCode + "_voice/" + id.trim() + ".mp3";
+        final String dvoice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/" + destinationLangCode + "_voice/" + did.trim() + ".mp3";
 
-        }
-    });
+        holder.entityContent.setText(data.get(position).getContent());
+        Picasso.with(context).load(url + data.get(position).getImg() + ".png").into(holder.entity_img);
+        holder.voiceEntity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sampleMediaPlayer.killMediaPlayer();
+                sampleMediaPlayer.playAudio(voice, dvoice);
+            }
+        });
     }
 
     @Override
@@ -60,16 +71,17 @@ public class EntityAdapter extends RecyclerView.Adapter<EntityAdapter.EntityView
 
     public class EntityViewHolder extends RecyclerView.ViewHolder {
         ImageView entity_img;
-        TextView entity_content;
+        TextView entityContent;
         LinearLayout ll2;
-        ImageButton voice_entity;
+        ImageButton voiceEntity;
+
 
         public EntityViewHolder(@NonNull View itemView) {
             super(itemView);
-           entity_content =itemView.findViewById(R.id.entity_content);
-            entity_img=itemView.findViewById(R.id.entity_img);
+            entityContent = itemView.findViewById(R.id.entity_content);
+            entity_img = itemView.findViewById(R.id.entity_img);
             ll2 = itemView.findViewById(R.id.llmain2);
-            voice_entity = itemView.findViewById(R.id.imgbtn_voice);
+            voiceEntity = itemView.findViewById(R.id.imgbtn_voice);
 
 
         }

@@ -9,11 +9,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/unitvpager"
         android:layout_width="match_parent"
-        android:layout_height="586dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="53dp"
-        android:layout_marginBottom="92dp"
+        android:layout_height="fill_parent"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

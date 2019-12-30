@@ -33,6 +33,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if(access_token!=null){
                     Intent intent=new Intent(SplashScreenActivity.this, DashBoardVpager.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     Intent intent=new Intent(SplashScreenActivity.this, LoginActivity.class);
                     startActivity(intent);

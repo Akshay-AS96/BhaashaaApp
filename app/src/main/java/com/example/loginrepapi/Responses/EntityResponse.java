@@ -3,8 +3,10 @@ package com.example.loginrepapi.Responses;
 import java.util.ArrayList;
 
 public class EntityResponse {
+
     private ArrayList<EntityData> data;
     private EntityInfo info;
+
     public EntityResponse(ArrayList<EntityData> data, EntityInfo info) {
         this.data = data;
         this.info = info;

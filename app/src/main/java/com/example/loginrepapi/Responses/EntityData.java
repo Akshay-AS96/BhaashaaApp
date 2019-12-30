@@ -18,7 +18,7 @@ public class EntityData {
     private int contenttype;
     @SerializedName("source_langcode")
     private String sourcelangcode;
-    @SerializedName("destinationlangcode")
+    @SerializedName("destination_langcode")
     private String destination_langcode;
     @SerializedName("source")
     private EntitySource source;

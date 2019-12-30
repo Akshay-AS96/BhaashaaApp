@@ -23,26 +23,22 @@ public class DashBoardVpager extends AppCompatActivity implements Learn.OnFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_vpager);
-        
-if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
-{
-    NotificationChannel channel=new NotificationChannel("mynotification","mynotification",
-            NotificationManager.IMPORTANCE_DEFAULT);
-    NotificationManager manager=getSystemService(NotificationManager.class);
-    manager.createNotificationChannel(channel);
-}
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("mynotification", "mynotification",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
-
-
-        TabLayout tabLayout=findViewById(R.id.tablayout);
+        TabLayout tabLayout = findViewById(R.id.tablayout);
         tabLayout.addTab(tabLayout.newTab().setText("Learn"));
         tabLayout.addTab(tabLayout.newTab().setText("Activities"));
         tabLayout.addTab(tabLayout.newTab().setText("Teacher"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager=findViewById(R.id.vpager);
-        final PageAdapter adapter=new PageAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        final ViewPager viewPager = findViewById(R.id.vpager);
+        final PageAdapter adapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

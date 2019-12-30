@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,37 +40,36 @@ import retrofit2.Response;
 
 
 public class UnitFragment extends Fragment {
-    public String voice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/en_voice/177.mp3";
     public String url = "https://s3-ap-south-1.amazonaws.com/dev.baashaa/data/content/bs_image/";
-    public String urlvoice = " https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/";
     MediaPlayer mp;
     ImageButton unitimagebtn;
     TextView dlTextView, slTextView;
     ImageView unitimg;
-
-
+    int unitcount;
+    Button entitybtn;
+    ClickInterface clickInterface;
     private UnitData data;
     private ArrayList<UnitData> unitData;
     private Context context;
-    int position;
+    int value=0;
     SampleMediaPlayer sampleMediaPlayer;
+    public UnitFragment(ClickInterface clickInterface) {
+        this.clickInterface = clickInterface;
 
-
-    public UnitFragment() {
-        // Required empty public constructor
     }
+
+
 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         dlTextView = view.findViewById(R.id.dlTextView);
         slTextView = view.findViewById(R.id.slTextView);
         unitimg = view.findViewById(R.id.unitimg);
         unitimagebtn = view.findViewById(R.id.untimgbtn);
+        entitybtn=view.findViewById(R.id.entitybtn);
         sampleMediaPlayer = new SampleMediaPlayer();
-
         Bundle b = getArguments();
         data = b.getParcelable("Unit");
         if (data != null) {
@@ -79,9 +79,21 @@ public class UnitFragment extends Fragment {
             dlTextView.setText(data.getUnitDestination().getContent());
             Picasso.with(context).load(url + data.getImg() + ".png").into(unitimg);
             slTextView.setText(data.getUnitSource().getContent());
+             unitcount= Integer.parseInt(data.getEntity_count());
             final String voice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/"+sourceLangCode+"_voice/"+ id.trim() + ".mp3";
             final String dvoice = "https://s3.ap-south-1.amazonaws.com/dev.baashaa/data/content/"+destinationLangCode+"_voice/"+ id.trim() + ".mp3";
    //         urlvoice = urlvoice + sourceLangCode + "_voice/" + id.trim() + ".mp3";
+            if(unitcount!=value) {
+                entitybtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        clickInterface.click(data.getBase_content_id());
+                    }
+                });
+            }else {
+                entitybtn.setVisibility(View.GONE);
+
+            }
 
 
             unitimagebtn.setOnClickListener(new View.OnClickListener() {

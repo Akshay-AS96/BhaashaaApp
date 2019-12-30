@@ -78,4 +78,48 @@ public class EntityDestination {
         this.staticwriting = staticwriting;
         this.derivedimg = derivedimg;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPhonetics() {
+        return phonetics;
+    }
+
+    public String getBasecontentid() {
+        return basecontentid;
+    }
+
+    public String getEntityrefid() {
+        return entityrefid;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getVoice() {
+        return voice;
+    }
+
+    public String getRemarkvoice() {
+        return remarkvoice;
+    }
+
+    public String getStaticwriting() {
+        return staticwriting;
+    }
+
+    public String getDerivedimg() {
+        return derivedimg;
+    }
 }

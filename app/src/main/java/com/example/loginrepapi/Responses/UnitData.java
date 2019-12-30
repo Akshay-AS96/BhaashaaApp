@@ -18,7 +18,15 @@ public class UnitData  implements Parcelable {
     String description;
     String phonetics;
     String topic_id;
-
+    String img;
+    String source_langcode;
+    String destination_langcode;
+    String entity_count;
+    String related_units;
+    @SerializedName("source")
+    private UnitSource unitSource;
+    @SerializedName("destination")
+    private UnitDestination unitDestination;
 
     protected UnitData(Parcel in) {
         content_app_id = in.readString();
@@ -82,15 +90,7 @@ public class UnitData  implements Parcelable {
         this.related_units = related_units;
     }
 
-    String img;
-    String source_langcode;
-    String destination_langcode;
-    String entity_count;
-    String related_units;
-    @SerializedName("source")
-    private UnitSource unitSource;
-    @SerializedName("destination")
-    private UnitDestination unitDestination;
+
 
     public UnitData(String content_app_id, String order, String type, String base_content_id, String subtopic_id, String weight, String content, String description, String phonetics, String topic_id, String img, UnitSource unitSource, UnitDestination unitDestination, String source_langcode, String destination_langcode,String entity_count,String related_units) {
         this.content_app_id = content_app_id;

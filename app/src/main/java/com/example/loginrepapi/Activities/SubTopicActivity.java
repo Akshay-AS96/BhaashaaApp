@@ -33,8 +33,9 @@ public class SubTopicActivity extends AppCompatActivity implements ClickInterfac
     private ArrayList<SubTopicData> data;
     private RecyclerView recyclerView;
     SharedPreferencesManager sharedPreferencesManager;
-   String position;
-    //SubTopicData subTopicData;
+    String position;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,31 +43,30 @@ public class SubTopicActivity extends AppCompatActivity implements ClickInterfac
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.activity_sub_topic);
-        sharedPreferencesManager=new SharedPreferencesManager(this);
+        sharedPreferencesManager = new SharedPreferencesManager(this);
         recyclerView = findViewById(R.id.rvitems2);
-       position = getIntent().getExtras().getString("position");
-
+        position = getIntent().getExtras().getString("position");
         SubTOPIC();
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
     private void SubTOPIC() {
-        String access_token = "Bearer "+sharedPreferencesManager.getAccessToken();
+        String access_token = "Bearer " + sharedPreferencesManager.getAccessToken();
         SubTopicDataService service = SignUpClientInstance.getRetrofit().create(SubTopicDataService.class);
-        Call<SubTopicResponse> call = service.getAllposts(access_token,"en","ml","17","3",position);
+        Call<SubTopicResponse> call = service.getAllposts(access_token, "en", "ml", "17", "3", position);
         call.enqueue(new Callback<SubTopicResponse>() {
             @Override
             public void onResponse(Call<SubTopicResponse> call, Response<SubTopicResponse> response) {
 
                 SubTopicResponse response1 = response.body();
                 if (response.isSuccessful() && response1 != null && response1.getData() != null) {
-                    // int Topicid = response1.getData().get(0).getId();
-                    data=response1.getData();
+                    data = response1.getData();
                     generateDataList(data);
-
 
 
                 } else {
@@ -82,8 +82,9 @@ public class SubTopicActivity extends AppCompatActivity implements ClickInterfac
         });
 
     }
+
     private void generateDataList(ArrayList<SubTopicData> data) {
-        adapter = new SubTopicAdapter(data,this,this);
+        adapter = new SubTopicAdapter(data, this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.VERTICAL);
@@ -92,8 +93,8 @@ public class SubTopicActivity extends AppCompatActivity implements ClickInterfac
 
     @Override
     public void click(String position) {
-        Intent intent=new Intent(this, UnitVPagerActivity.class);
-        intent.putExtra("position",position);
+        Intent intent = new Intent(this, UnitVPagerActivity.class);
+        intent.putExtra("position", position);
         startActivity(intent);
     }
 }

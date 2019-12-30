@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ArgbEvaluator;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import com.example.loginrepapi.Activities.Fragments.UnitFragment;
 import com.example.loginrepapi.Adapters.SubTopicAdapter;
 import com.example.loginrepapi.Adapters.UnitAdapter;
 import com.example.loginrepapi.Interfaces.ClickInterface;
+import com.example.loginrepapi.Interfaces.EntityDataService;
 import com.example.loginrepapi.Interfaces.SubTopicDataService;
 import com.example.loginrepapi.Interfaces.UnitDataService;
 import com.example.loginrepapi.R;
+import com.example.loginrepapi.Responses.EntityData;
+import com.example.loginrepapi.Responses.EntityResponse;
 import com.example.loginrepapi.Responses.SubTopicData;
 import com.example.loginrepapi.Responses.SubTopicResponse;
 import com.example.loginrepapi.Responses.TopicResponse;
@@ -33,15 +37,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UnitVPagerActivity extends AppCompatActivity {
+public class UnitVPagerActivity extends AppCompatActivity implements ClickInterface{
     ViewPager viewPager;
     private MediaPlayer mediaPlayer;
     UnitAdapter adapter;
     private ArrayList<UnitData> data;
+    private ArrayList<EntityData> entityData;
+
     SharedPreferencesManager sharedPreferencesManager;
     String position;
-    //  ArgbEvaluator argbEvaluator=new ArgbEvaluator();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +58,14 @@ public class UnitVPagerActivity extends AppCompatActivity {
         sharedPreferencesManager = new SharedPreferencesManager(this);
         position = getIntent().getExtras().getString("position");
         Unit();
-
-
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
     }
+
     private void Unit() {
         String access_token = "Bearer " + sharedPreferencesManager.getAccessToken();
         UnitDataService service = SignUpClientInstance.getRetrofit().create(UnitDataService.class);
@@ -94,10 +98,18 @@ public class UnitVPagerActivity extends AppCompatActivity {
 
     }
 
+
     private void generateDataList(ArrayList<UnitData> data) {
-        adapter = new UnitAdapter(getSupportFragmentManager(), data);
+        adapter = new UnitAdapter(getSupportFragmentManager(), data,this);
         viewPager.setAdapter(adapter);
     }
 
 
+
+    @Override
+    public void click(String position) {
+        Intent intent = new Intent(this, EntityActivity.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
+    }
 }
